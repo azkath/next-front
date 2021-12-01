@@ -1,4 +1,5 @@
 import { PublicClientApplication } from "@azure/msal-browser";
+import { checkToken } from ".";
 import { msalConfig } from "../../config/auth";
 
 
@@ -29,8 +30,22 @@ export const setActive = async (instance, account, scb, fcb) => {
 
 export const loginPopUp = async (scb) => {
   await msalInstance.acquireTokenPopup({ scopes: [] }).then(async (response) => {
+    console.log(111, response);
     await msalInstance.setActiveAccount(response.account)
     return response;
+  })
+}
+
+export const checkAuth = async (scb) => {
+  const token = await getAccessToken(msalInstance);
+  checkToken({ accessToken: token }, (response) => {
+    if(response.status.code === 200){
+      return scb && scb(response.body)
+    }else{
+      return scb && scb(null)
+    }
+  }, (err) => {
+    return window.location.replace('/login')
   })
 }
 

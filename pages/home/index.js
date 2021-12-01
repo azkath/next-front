@@ -16,9 +16,11 @@ export default function Home(){
     }
     getToken().then(res => {
       checkToken({accessToken: res}, (_res) => {
+        console.log(111, _res, res);
         if(_res.status.code === 200){
           setLoading(false)
         }else{
+          // sessionStorage.clear()
           router.push('/login')
         }
       })
@@ -45,6 +47,9 @@ export default function Home(){
         <Menu mode="horizontal">
           <Menu.Item key="home">
             <Text strong style={{ fontSize: 18 }} onClick={() => window.location.reload()}>Home</Text>
+          </Menu.Item>
+          <Menu.Item key="game">
+            <Text strong style={{ fontSize: 18 }} onClick={() => router.push('/game')}>Game</Text>
           </Menu.Item>
           <Menu.Item key="logout" onClick={() => handleLogout()}>
             <Text strong style={{ fontSize: 18 }}>Logout</Text>

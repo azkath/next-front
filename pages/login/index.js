@@ -24,10 +24,12 @@ export default function LoginPage() {
           if(_res.status.code === 200){
             router.push('/home')
           }else{
+            // sessionStorage.clear()
             return setLoading(false)
           }
         })
       }else{
+        // sessionStorage.clear()
         return setLoading(false)
       }
     }).catch(err => {
@@ -47,11 +49,13 @@ export default function LoginPage() {
             if(res.status.code === 200){
               return router.push('/home')
             }else{
+              // sessionStorage.clear()
               return setLoading(false)
             }
           })
         }
       }).catch(err => {
+        // sessionStorage.clear()
         setLoading(false)
         return message.error('Login Failed');
       })

@@ -1,5 +1,6 @@
-import { getAccessToken, setActive, loginPopUp, logoutPopUp, msalInstance } from "./authService";
+import { getAccessToken, setActive, loginPopUp, checkAuth, logoutPopUp, msalInstance } from "./authService";
 import { signUp, checkToken, signOut } from "./userService";
+import { createGame, getListGame, updateGame, deleteGame } from "./gameService";
 
 export{
   getAccessToken,
@@ -7,7 +8,12 @@ export{
   loginPopUp,
   msalInstance,
   logoutPopUp,
+  checkAuth,
   signUp,
   signOut,
-  checkToken
+  checkToken,
+  createGame,
+  updateGame,
+  deleteGame,
+  getListGame
 }
